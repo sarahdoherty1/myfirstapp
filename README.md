@@ -18,3 +18,16 @@ Run the example script:
 python app/my_script.py
 ```
 
+Run the unemployment report:
+
+``sh
+python app/unemployment.py
+``
+Install packages
+```sh
+pip install -r requirements.txt
+```
+
+To install packages: 
+
+pip install -r requirements.txt
