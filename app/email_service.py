@@ -11,8 +11,7 @@ load_dotenv() # go look in the .env file for any env vars
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 SENDER_ADDRESS = os.getenv("SENDER_ADDRESS")
 
-SENDGRID_API_KEY = getpass("Please input your SendGrid API Key:")
-SENDER_ADDRESS = getpass("Please input your sender address:")
+
 
 def send_email(recipient_address=SENDER_ADDRESS, subject="[Shopping Cart App] Testing 123", html_content="<p>Hello World</p>"):
     print("SENDING EMAIL TO:", recipient_address)
