@@ -57,3 +57,12 @@ SENDGRID_ADDRESS="example@gmail.com"
 ```sh
 python app/email_service.py
 ```
+
+
+## Testing
+
+Run tests:
+
+```sh
+pytest
+```
