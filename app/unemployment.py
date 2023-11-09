@@ -25,16 +25,26 @@ API_KEY = os.getenv("ALPHAVANTAGE_API_KEY")
 
 # FUNCTIONS
 
-request_url = f"https://www.alphavantage.co/query?function=UNEMPLOYMENT&apikey={API_KEY}"
 
-response = requests.get(request_url)
+def fetch_data():
+    request_url = f"https://www.alphavantage.co/query?function=UNEMPLOYMENT&apikey={API_KEY}"
 
-parsed_response = json.loads(response.text)
-print(type(parsed_response))
-print(parsed_response.keys())
-#pprint(parsed_response)
+    response = requests.get(request_url)
 
-data = parsed_response["data"]
+    parsed_response = json.loads(response.text)
+    print(type(parsed_response))
+    print(parsed_response.keys())
+    #pprint(parsed_response)
+
+    data = parsed_response["data"]
+    return data
+
+if __name__ == "__main__":
+    pass
+
+##WORKING CODE
+
+data = fetch_data()
 
 # Challenge A
 #
