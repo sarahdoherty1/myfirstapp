@@ -12,6 +12,7 @@ from plotly.express import line
 
 from app.email_service import send_email
 
+print("BACK IN UNEMPLOYMENT FILE")
 # ENVIRONMENT VARIABLES AND CONSTANTS
 
 load_dotenv()
@@ -40,66 +41,69 @@ def fetch_data():
     return data
 
 if __name__ == "__main__":
-    pass
-
-##WORKING CODE
-
-data = fetch_data()
-
-# Challenge A
-#
-# What is the most recent unemployment rate? And the corresponding date?
-# Display the unemployment rate using a percent sign.
-
-print("-------------------------")
-print("LATEST UNEMPLOYMENT RATE:")
-#print(data[0])
-
-latest_rate = data[0]['value']
-latest_date = data[0]["date"]
-
-
-print(f"{latest_rate}%", "as of", latest_rate)
-
-
-# Challenge B
-#
-# What is the average unemployment rate for all months during this calendar year?
-# ... How many months does this cover?
-
-
-this_year = [d for d in data if "2023-" in d["date"]]
-
-rates_this_year = [float(d["value"]) for d in this_year]
-#print(rates_this_year)
-
-print("-------------------------")
-print("AVG UNEMPLOYMENT THIS YEAR:", f"{round(mean(rates_this_year), 2)}%")
-print("NO MONTHS:", len(this_year))
-
-# Challenge C
-#
-# Plot a line chart of unemployment rates over time.
-
-
-dates = [d["date"] for d in data]
-rates = [float(d["value"]) for d in data]
-
-fig = line(x=dates, y=rates, title="United States Unemployment Rate over time", labels= {"x": "Month", "y": "Unemployment Rate"})
-fig.show()
-
-# Email Sending
-
-user_address = input("Please enter your email address: ")
 
 
 
+    ##WORKING CODE
+
+    data = fetch_data()
+
+    # Challenge A
+    #
+    # What is the most recent unemployment rate? And the corresponding date?
+    # Display the unemployment rate using a percent sign.
+
+    print("-------------------------")
+    print("LATEST UNEMPLOYMENT RATE:")
+    #print(data[0])
+
+    latest_rate = data[0]['value']
+    latest_date = data[0]["date"]
 
 
-content = f"""
-<h1> Unemployment Report Email </h1>
+    print(f"{latest_rate}%", "as of", latest_rate)
 
-<p> Latest rate: {latest_rate}% as of {latest_date} </p>
-"""
 
-send_email(recipient_address=user_address, html_content=content, subject="Your Unemployment Report")
+    # Challenge B
+    #
+    # What is the average unemployment rate for all months during this calendar year?
+    # ... How many months does this cover?
+
+
+    this_year = [d for d in data if "2023-" in d["date"]]
+
+    rates_this_year = [float(d["value"]) for d in this_year]
+    #print(rates_this_year)
+
+    print("-------------------------")
+    print("AVG UNEMPLOYMENT THIS YEAR:", f"{round(mean(rates_this_year), 2)}%")
+    print("NO MONTHS:", len(this_year))
+
+    # Challenge C
+    #
+    # Plot a line chart of unemployment rates over time.
+
+
+    dates = [d["date"] for d in data]
+    rates = [float(d["value"]) for d in data]
+
+    fig = line(x=dates, y=rates, title="United States Unemployment Rate over time", labels= {"x": "Month", "y": "Unemployment Rate"})
+    fig.show()
+
+    # Email Sending
+
+    user_address = input("Please enter your email address: ")
+
+
+
+
+
+    content = f"""
+    <h1> Unemployment Report Email </h1>
+
+    <p> Latest rate: {latest_rate}% as of {latest_date} </p>
+    """
+
+    send_email(recipient_address=user_address, html_content=content, subject="Your Unemployment Report")
+
+
