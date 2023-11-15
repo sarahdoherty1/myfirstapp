@@ -18,11 +18,6 @@ Run the example script:
 python app/my_script.py
 ```
 
-Run the unemployment report:
-
-``sh
-python -m app.unemployment
-``
 Install packages
 ```sh
 pip install -r requirements.txt
@@ -41,19 +36,25 @@ Create a ".env" file and paste in the following contents:
 # this is the ".env" file...
 
 ALPHAVANTAGE_API_KEY="_________"
-```
 
 SENDGRID_API_KEY="____________"
 SENDGRID_ADDRESS="example@gmail.com"
+```
 
 
-##Send an example email:
+
+Run the unemployment report:
+
+```sh
+python -m app.unemployment
+```
+
+Send an example email:
 
 
 ```sh
 python app/email_service.py
 ```
-
 
 ## Testing
 
