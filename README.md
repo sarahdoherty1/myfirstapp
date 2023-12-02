@@ -56,12 +56,12 @@ Send an example email:
 python app/email_service.py
 ```
 
+
 Run the stocks report:
 
 ```sh
 python -m app.stocks
 ```
-
 
 
 ### Web App
@@ -78,7 +78,6 @@ FLASK_APP=web_app flask run
 export FLASK_APP=web_app
 flask run
 ```
-
 
 ## Testing
 
