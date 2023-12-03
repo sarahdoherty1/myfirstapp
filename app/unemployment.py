@@ -1,34 +1,41 @@
 # IMPORTS AT THE TOP
 
-import os
 import json
 from pprint import pprint
 from statistics import mean
 
 import requests
-from getpass import getpass
-from dotenv import load_dotenv
 from plotly.express import line
 
 from app.alpha import API_KEY
 from app.email_service import send_email
 
 print("BACK IN UNEMPLOYMENT FILE")
+
+
 # ENVIRONMENT VARIABLES AND CONSTANTS
 
-load_dotenv()
 
-API_KEY = os.getenv("ALPHAVANTAGE_API_KEY")
 
 #breakpoint()
 
 #quit()
 
-
 # FUNCTIONS
+
+def format_pct(my_number):
+    """
+    Formats a percentage number like 3.6555554 as percent, rounded to two decimal places.
+
+    Param my_number (float) like 3.6555554
+
+    Returns (str) like '3.66%'
+    """
+    return f"{my_number:.2f}%"
 
 
 def fetch_data():
+
     request_url = f"https://www.alphavantage.co/query?function=UNEMPLOYMENT&apikey={API_KEY}"
 
     response = requests.get(request_url)
@@ -41,11 +48,12 @@ def fetch_data():
     data = parsed_response["data"]
     return data
 
+
+
 if __name__ == "__main__":
 
 
-
-    ##WORKING CODE
+    # WORKING CODE
 
     data = fetch_data()
 
@@ -58,11 +66,11 @@ if __name__ == "__main__":
     print("LATEST UNEMPLOYMENT RATE:")
     #print(data[0])
 
+
     latest_rate = data[0]['value']
     latest_date = data[0]["date"]
 
-
-    print(f"{latest_rate}%", "as of", latest_rate)
+    print(f"{latest_rate}%", "as of", latest_date)
 
 
     # Challenge B
@@ -91,11 +99,11 @@ if __name__ == "__main__":
     fig = line(x=dates, y=rates, title="United States Unemployment Rate over time", labels= {"x": "Month", "y": "Unemployment Rate"})
     fig.show()
 
-    # Email Sending
+    # EMAIL SENDING
+
+
 
     user_address = input("Please enter your email address: ")
-
-
 
 
 
@@ -106,14 +114,3 @@ if __name__ == "__main__":
     """
 
     send_email(recipient_address=user_address, html_content=content, subject="Your Unemployment Report")
-
-
-def format_pct(my_number):
-    """
-    Formats a percentage number like 3.6555554 as percent, rounded to two decimal places.
-
-    Param my_number (float) like 3.6555554
-
-    Returns (str) like '3.66%'
-    """
-    return f"{my_number:.2f}%"
